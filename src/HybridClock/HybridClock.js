@@ -9,7 +9,47 @@ export default function HybridClock() {
  
   const [showClock,setShowClock] = useState(true);
   const [showStopWatch,setShowWatch] = useState(false)
-  
+
+  const [count,setCount] = useState(null);
+  const [timerId,setTimerId] = useState(null);
+  const [seconds,setSeconds] = useState("00");
+  const [minutes,setMinutes] = useState("00");
+  const [hours,setHours] = useState("00");
+  const [showStart,setShowStart] = useState(true)
+  const [showStop,setShowStop] = useState(false);
+  let getCount = count;
+
+const startTimer = () => {
+    setShowStop(true);
+    setShowStart(false)
+    console.log("start");
+    setTimerId( setInterval( () => {
+        console.log("timerTriggerd");
+        setCount((prev) => ( getCount = (prev + 1) ) );
+        setSeconds(  ( (getCount + 1) % 60 ) < 10 ? "0" +  ( (getCount + 1) % 60 ) :  ( (getCount + 1) % 60 )   );
+        setMinutes( (parseInt((getCount + 1)/60) % 60) <10 ? "0" + (parseInt((getCount + 1)/60) % 60) : (parseInt((getCount + 1)/60) % 60)    );
+        setHours( parseInt((getCount + 1) / 3600)< 10 ? "0" + parseInt((getCount + 1) / 3600) : parseInt((getCount + 1) / 3600)  )
+    } , 1000)   )
+   
+}
+const stopTimer = () => {
+    setShowStart(true);
+    setShowStop(false)
+    console.log("stop");
+    setTimerId(clearInterval(timerId));
+}
+
+const resetTimer = () => {
+    console.log('reset');
+    setTimerId(clearInterval(timerId));
+    setCount(0);
+    setSeconds("00");
+    setMinutes("00");
+    setHours("00");
+    setShowStart(true);
+    setShowStop(false)
+}
+
   const showClockFun = () => {
       setShowClock(true);
       setShowWatch(false)
@@ -19,6 +59,16 @@ export default function HybridClock() {
       setShowClock(false)
   }
   
+  const data = {
+    hours : hours,
+    minutes : minutes,
+    seconds : seconds,
+    startTimer : startTimer,
+    stopTimer : stopTimer,
+    resetTimer : resetTimer,
+    showStart : showStart,
+    showStop : showStop
+  }
 
   return (
     <div className='hybridClock'>
@@ -26,7 +76,7 @@ export default function HybridClock() {
            <div className='clockComponent' >
                {showClock? <ClockComponent /> : null}
            </div>
-               {showStopWatch ?  <StopWatchComponent /> : null}
+               {showStopWatch ?  <StopWatchComponent sendData = {data} /> : null}
         </div>
 
         <div className='hybridBtns' >
@@ -40,3 +90,7 @@ export default function HybridClock() {
     </div>
   )
 }
+
+
+
+// hours = {hours} minutes = {minutes} seconds = {seconds} startTimer = {startTimer} stopTimer = {stopTimer} resetTimer = {resetTimer} showStart = {showStart} showStop = {showStop}
