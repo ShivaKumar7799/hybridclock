@@ -1,0 +1,19 @@
+.hybridBtns{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.clockBtn > Button, .stopwatchBtn> Button{
+  background-color: white;
+  font-size: 15px;
+  padding: 12px 30px;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-weight: 500;
+}
+.stopwatchBtn> Button{
+  padding: 12px 20px;
+}
+.clockComponent{
+  margin-bottom: 50px;
+}

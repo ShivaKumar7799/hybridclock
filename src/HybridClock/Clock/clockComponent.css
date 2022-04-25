@@ -1,0 +1,10 @@
+.classComponent{
+  text-align: center;
+}
+h2{
+  margin-bottom: 50px;
+}
+.time > span{
+   font-size: 25px;
+   font-weight: 600;
+}
