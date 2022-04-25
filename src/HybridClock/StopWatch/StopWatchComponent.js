@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from '../Button'
 import { useState } from 'react'
 import './stopWatchComponent.css'
@@ -21,7 +21,6 @@ export default function StopWatchComponent() {
       setTimerId( setInterval( () => {
           console.log("timerTriggerd");
           setCount((prev) => ( getCount = (prev + 1) ) );
-          console.log(getCount);
           setSeconds(  ( (getCount + 1) % 60 ) < 10 ? "0" +  ( (getCount + 1) % 60 ) :  ( (getCount + 1) % 60 )   );
           setMinutes( (parseInt((getCount + 1)/60) % 60) <10 ? "0" + (parseInt((getCount + 1)/60) % 60) : (parseInt((getCount + 1)/60) % 60)    );
           setHours( parseInt((getCount + 1) / 3600)< 10 ? "0" + parseInt((getCount + 1) / 3600) : parseInt((getCount + 1) / 3600)  )
@@ -33,7 +32,6 @@ export default function StopWatchComponent() {
       setShowStop(false)
       console.log("stop");
       setTimerId(clearInterval(timerId));
-  
   }
   const resetTimer = () => {
       console.log('reset');
@@ -42,6 +40,8 @@ export default function StopWatchComponent() {
       setSeconds("00");
       setMinutes("00");
       setHours("00");
+      setShowStart(true);
+      setShowStop(false)
   }
   return (
     <div className='stopWatchComponent' >
