@@ -16,7 +16,7 @@ export default function ClockComponent() {
         const date = new Date();
         getHours = (date.getHours()) < 10 ? "0" + date.getHours() : date.getHours();
     
-        setHours( getHours <=12 ? getHours : ((getHours % 13 ) + 1 < 10) ? "0" + ((getHours % 13 ) + 1) : ((getHours % 13 ) + 1) )  ;
+        setHours( getHours === 0 ? 12 : getHours <=12 ? getHours : ((getHours % 13 ) + 1 < 10) ? "0" + ((getHours % 13 ) + 1) : ((getHours % 13 ) + 1) )  ;
         setMinutes((date.getMinutes()) < 10 ? "0" + date.getMinutes() : date.getMinutes() );
         setMeridium( getHours < 12 ? "A.M" : "P.M"    )
    }  , 10)
