@@ -27,9 +27,9 @@ const startTimer = () => {
     setTimerId( setInterval( () => {
         console.log("timerTriggerd");
         setCount((prev) => ( getCount = (prev + 1) ) );
-        setMilliSeconds(  ( (getCount + 1) % 60 ) < 10 ? "0" +  ( (getCount + 1) % 60 ) :  ( (getCount + 1) % 60 )   );
-        setSeconds( (parseInt((getCount + 1)/60) % 60) <10 ? "0" + (parseInt((getCount + 1)/60) % 60) : (parseInt((getCount + 1)/60) % 60)    );
-        setMinutes( parseInt((getCount + 1) / 3600)< 10 ? "0" + parseInt((getCount + 1) / 3600) : parseInt((getCount + 1) / 3600)  )
+        setMilliSeconds(  ( (getCount + 1) % 100 ) < 10 ? "0" +  ( (getCount + 1) % 100 ) :  ( (getCount + 1) % 100 )   );
+        setSeconds( (parseInt((getCount + 1)/100) % 60) <10 ? "0" + (parseInt((getCount + 1)/100) % 60) : (parseInt((getCount + 1)/100) % 60)    );
+        setMinutes( (parseInt((getCount + 1) / 6000) % 60) < 10 ? "0" + (parseInt((getCount + 1) / 6000) % 60) : (parseInt((getCount + 1) / 6000) % 60)  )
     } , 10)   )
    
 }
