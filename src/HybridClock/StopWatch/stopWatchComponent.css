@@ -17,6 +17,14 @@ h1{
 }
 .displayTimer{
   transform: translateY(30px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+.timerSpan{
+  width: 50px;
+  flex-basis: 50px;
 }
 span{
   font-size: 35px;

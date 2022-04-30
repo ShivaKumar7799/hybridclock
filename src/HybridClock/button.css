@@ -1,4 +1,4 @@
-.active{
+.activeClock, .activeStopWatch{
   background-color: gainsboro;
   font-size: 15px;
   padding: 12px 30px;
@@ -6,7 +6,10 @@
   border-radius: 10px;
   font-weight: 500
 }
-.active> button{
+.activeStopWatch{
+  padding: 12px 20px;
+}
+.activeClock> button, .activeStopWatch> button{
   background-color: gainsboro;
   border: none;
 }

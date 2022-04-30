@@ -12,10 +12,11 @@ export default function HybridClock() {
 
   const [count,setCount] = useState(null);
   const [timerId,setTimerId] = useState(null);
+  const [milliSeconds,setMilliSeconds] = useState("00");
   const [seconds,setSeconds] = useState("00");
   const [minutes,setMinutes] = useState("00");
-  const [hours,setHours] = useState("00");
-  const [showStart,setShowStart] = useState(true)
+//  const [hours,setHours] = useState("00");
+  const [showStart,setShowStart] = useState(true);
   const [showStop,setShowStop] = useState(false);
   let getCount = count;
 
@@ -26,10 +27,10 @@ const startTimer = () => {
     setTimerId( setInterval( () => {
         console.log("timerTriggerd");
         setCount((prev) => ( getCount = (prev + 1) ) );
-        setSeconds(  ( (getCount + 1) % 60 ) < 10 ? "0" +  ( (getCount + 1) % 60 ) :  ( (getCount + 1) % 60 )   );
-        setMinutes( (parseInt((getCount + 1)/60) % 60) <10 ? "0" + (parseInt((getCount + 1)/60) % 60) : (parseInt((getCount + 1)/60) % 60)    );
-        setHours( parseInt((getCount + 1) / 3600)< 10 ? "0" + parseInt((getCount + 1) / 3600) : parseInt((getCount + 1) / 3600)  )
-    } , 1000)   )
+        setMilliSeconds(  ( (getCount + 1) % 60 ) < 10 ? "0" +  ( (getCount + 1) % 60 ) :  ( (getCount + 1) % 60 )   );
+        setSeconds( (parseInt((getCount + 1)/60) % 60) <10 ? "0" + (parseInt((getCount + 1)/60) % 60) : (parseInt((getCount + 1)/60) % 60)    );
+        setMinutes( parseInt((getCount + 1) / 3600)< 10 ? "0" + parseInt((getCount + 1) / 3600) : parseInt((getCount + 1) / 3600)  )
+    } , 10)   )
    
 }
 const stopTimer = () => {
@@ -43,9 +44,10 @@ const resetTimer = () => {
     console.log('reset');
     setTimerId(clearInterval(timerId));
     setCount(0);
+    setMilliSeconds("00")
     setSeconds("00");
     setMinutes("00");
-    setHours("00");
+   // setHours("00");
     setShowStart(true);
     setShowStop(false)
 }
@@ -60,7 +62,8 @@ const resetTimer = () => {
   }
   
   const data = {
-    hours : hours,
+    milliSeconds : milliSeconds,
+    //hours : hours,
     minutes : minutes,
     seconds : seconds,
     startTimer : startTimer,
@@ -80,10 +83,10 @@ const resetTimer = () => {
         </div>
 
         <div className='hybridBtns' >
-            <div className= {showClock ? "active" :'clockBtn'} >
+            <div className= {showClock ? "activeClock" :'clockBtn'} >
                <Button click = {showClockFun} name = "clock" />
             </div>
-            <div className= {showStopWatch ? "active" : "stopwatchBtn"}>
+            <div className= {showStopWatch ? "activeStopWatch" : "stopwatchBtn"}>
                <Button click = {showStopWatchFun} name = "stopwatch" />
             </div>
         </div>

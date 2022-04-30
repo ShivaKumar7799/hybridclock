@@ -1,5 +1,4 @@
 import Button from '../Button'
-import { useEffect, useState } from 'react'
 import './stopWatchComponent.css'
 
 export default function StopWatchComponent({sendData}) {
@@ -11,7 +10,7 @@ export default function StopWatchComponent({sendData}) {
           
           <div className='circle' >
             <div className='displayTimer' >
-              <span className='timerSpan' > {sendData.hours} : {sendData.minutes} : {sendData.seconds} </span>
+              <span className='span1 timerSpan' > {sendData.minutes} </span> : <span className='span2 timerSpan' >  {sendData.seconds}  </span> : <span className='span3 timerSpan' >  {sendData.milliSeconds} </span>
             </div>
             <div className='Btns'>
             {sendData.showStart ? <Button click = {sendData.startTimer} name = "Start" /> : null}
